@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(240, 186, 204);
+}
+nav{
+    background-color: antiquewhite;
+    width: 4000px;
+    margin-top: -20px;
+    margin-left: -10px;
+}
+h1{margin-left: 5px;}
