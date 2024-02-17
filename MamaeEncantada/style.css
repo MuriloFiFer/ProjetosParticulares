@@ -1,10 +1,58 @@
 body{
     background-color: rgb(240, 186, 204);
 }
-nav{
-    background-color: antiquewhite;
-    width: 4000px;
-    margin-top: -20px;
-    margin-left: -10px;
-}
+#bar1 {
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+    width: 100%;
+    margin-top: -08px;
+    height: 120px;
+  }
+  
+  #itensBar1 {
+    margin-top: 13px;
+    display: flex;
+    align-items: center;
+    height:100px;
+    
+  
+  }
+  
+  
+  #logoBar {
+  
+    padding-left: 3%;
+    margin-top: 5px;
+    height: 100px;
+    width: 90px;
+  
+  }
+  
+  #areaBuscar {
+    margin-left: 3%;
+    background-color: white;
+    border: solid 1px;
+    border-radius: 15px;
+    width: 200px;
+    height: 50px;
+  }
+  
+  #IconLupa {
+    margin-left: 10px;  
+    height: 80px;
+  }
+  
+  #iconBuy {
+  
+    height: 40px;
+  }
+  
+  #iconCadastro {
+    margin-left: 10%;
+  
+    height: 45px;
+    ;
+  }
+  
 h1{margin-left: 5px;}
