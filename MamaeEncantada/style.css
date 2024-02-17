@@ -8,6 +8,7 @@ body{
     width: 100%;
     margin-top: -08px;
     height: 120px;
+   
   }
   
   #itensBar1 {
@@ -24,7 +25,7 @@ body{
   
     padding-left: 3%;
     margin-top: 5px;
-    height: 100px;
+    height: 80px;
     width: 90px;
   
   }
