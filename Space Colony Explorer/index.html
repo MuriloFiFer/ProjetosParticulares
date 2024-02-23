@@ -1,181 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Colony Explorer</title>
-    <style>
-        /* Estilos CSS simples */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #resources {
-            margin-bottom: 20px;
-        }
-        #colonyNameDisplay {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Jogo de Sobrevivência Espacial</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Space Colony Explorer</h1>
-
     <div id="gameInfo">
-        <label for="colonyName">Nome do Local: </label>
-        <input type="text" id="colonyName" placeholder="Digite o nome do local">
-        <button onclick="startGame()">Começar Jogo</button>
-        <p id="dayCounter"></p>
+        <h1>Jogo de Sobrevivência Espacial</h1>
+        <label for="colonyName">Nome da Colônia:</label>
+        <input type="text" id="colonyName" placeholder="Insira o nome da sua colônia">
+        <br>
+        <label for="playerName">Seu Nome:</label>
+        <input type="text" id="playerName" placeholder="Insira seu nome">
+        <br>
+        <button onclick="startGame()">Iniciar Jogo</button>
     </div>
-    
     <div id="resources" style="display: none;">
-        <h2>Recursos:</h2>
-        <p>Água: <span id="water">0</span></p>
-        <p>Alimentos: <span id="food">0</span></p>
-        <p>Minerais: <span id="minerals">0</span></p>
-        <p>Energia: <span id="energy">0</span></p>
+        <h2>Recursos</h2>
+        <p id="dayCounter"></p>
         <p id="colonyNameDisplay"></p>
+        <p id="playerNameDisplay"></p>
+        <p>Água: <span id="water">50</span></p>
+        <p>Comida: <span id="food">50</span></p>
+        <p>Minerais: <span id="minerals">50</span></p>
+        <p>Energia: <span id="energy">50</span></p>
+        <button id="exploreBtn" onclick="explore()">Explorar</button>
+        <button id="buildHabitatBtn" onclick="build('habitat')">Construir Habitat (+10 de cada recurso)</button>
+        <button id="buildFarmBtn" onclick="build('farm')">Construir Fazenda (+10 de comida)</button>
+        <button id="buildMineBtn" onclick="build('mine')">Construir Mina (+10 de minerais)</button>
+        <button id="buildPowerplantBtn" onclick="build('powerplant')">Construir Usina de Energia (+10 de energia)</button>
     </div>
-
-    <button id="exploreBtn" onclick="explore()" style="display: none;">Explorar</button>
-    <button id="buildHabitatBtn" onclick="build('habitat')" style="display: none;">Construir Habitat (10 Água, 10 Alimentos, 10 Minerais, 10 Energia)</button>
-    <button id="buildFarmBtn" onclick="build('farm')" style="display: none;">Construir Fazenda (20 Água, 20 Minerais)</button>
-    <button id="buildMineBtn" onclick="build('mine')" style="display: none;">Construir Mina (20 Água, 30 Minerais, 10 Energia)</button>
-    <button id="buildPowerplantBtn" onclick="build('powerplant')" style="display: none;">Construir Usina de Energia (30 Água, 20 Minerais, 30 Energia)</button>
-
-    <script>
-        // Variáveis para armazenar recursos
-        let water = 0;
-        let food = 0;
-        let minerals = 0;
-        let energy = 0;
-
-        // Variáveis para o jogo
-        let days = 1;
-        let colonyName = "";
-
-        // Função para começar o jogo
-        function startGame() {
-            colonyName = document.getElementById("colonyName").value;
-            document.getElementById("gameInfo").style.display = "none";
-            document.getElementById("resources").style.display = "block";
-            document.getElementById("exploreBtn").style.display = "inline-block";
-            document.getElementById("buildHabitatBtn").style.display = "inline-block";
-            document.getElementById("buildFarmBtn").style.display = "inline-block";
-            document.getElementById("buildMineBtn").style.display = "inline-block";
-            document.getElementById("buildPowerplantBtn").style.display = "inline-block";
-            updateDayCounter();
-            updateColonyNameDisplay();
-        }
-
-        // Função para atualizar o contador de dias
-        function updateDayCounter() {
-            document.getElementById("dayCounter").textContent = "Dia " + days;
-        }
-
-        // Função para atualizar o nome da colônia exibido na tela
-        function updateColonyNameDisplay() {
-            document.getElementById("colonyNameDisplay").textContent = "Local da Colônia: " + colonyName;
-        }
-
-        // Função para explorar planetas
-        function explore() {
-            // Incrementa o número de dias
-            days++;
-
-            // Simulação de recursos aleatórios encontrados
-            water += Math.floor(Math.random() * 10);
-            food += Math.floor(Math.random() * 10);
-            minerals += Math.floor(Math.random() * 10);
-            energy += Math.floor(Math.random() * 10);
-
-            // Eventos aleatórios
-            let randomEvent = Math.random();
-            if (randomEvent < 0.05) {
-                alert("Você encontrou uma veia rica em minerais!");
-                minerals += 50;
-            } else if (randomEvent < 0.1) {
-                alert("Uma tempestade solar danificou suas usinas de energia!");
-                energy -= 20;
-            } else if (randomEvent < 0.15) {
-                alert("Piratas espaciais atacaram sua colônia!");
-                water -= 30;
-                food -= 30;
-                minerals -= 30;
-                energy -= 30;
-            }
-
-            // Atualiza a exibição de recursos, o contador de dias e o nome da colônia
-            updateResources();
-            updateDayCounter();
-            updateColonyNameDisplay();
-        }
-
-        // Função para construir edifícios
-        function build(building) {
-            // Verifica se há recursos suficientes para construir o edifício selecionado
-            let waterCost, foodCost, mineralsCost, energyCost;
-            let advantage = "";
-            switch(building) {
-                case 'habitat':
-                    waterCost = 10;
-                    foodCost = 10;
-                    mineralsCost = 10;
-                    energyCost = 10;
-                    advantage = "Mais espaço habitável!";
-                    break;
-                case 'farm':
-                    waterCost = 20;
-                    foodCost = 0;
-                    mineralsCost = 20;
-                    energyCost = 0;
-                    advantage = "Produção de alimentos aumentada!";
-                    break;
-                case 'mine':
-                    waterCost = 20;
-                    foodCost = 0;
-                    mineralsCost = 30;
-                    energyCost = 10;
-                    advantage = "Produção de minerais aumentada!";
-                    break;
-                case 'powerplant':
-                    waterCost = 30;
-                    foodCost = 0;
-                    mineralsCost = 20;
-                    energyCost = 30;
-                    advantage = "Produção de energia aumentada!";
-                    break;
-                default:
-                    alert("Edifício desconhecido!");
-                    return;
-            }
-            
-            if (water >= waterCost && food >= foodCost && minerals >= mineralsCost && energy >= energyCost) {
-                // Deduz os recursos necessários
-                water -= waterCost;
-                food -= foodCost;
-                minerals -= mineralsCost;
-                energy -= energyCost;
-
-                // Adiciona a vantagem ao jogador
-                alert("Construção concluída!\n" + advantage);
-
-                // Atualiza a exibição de recursos
-                updateResources();
-            } else {
-                alert("Recursos insuficientes para construir " + building + ".");
-            }
-        }
-
-        // Função para atualizar a exibição de recursos na página
-        function updateResources() {
-            document.getElementById("water").textContent = water;
-            document.getElementById("food").textContent = food;
-            document.getElementById("minerals").textContent = minerals;
-            document.getElementById("energy").textContent = energy;
-        }
-    </script>
+    <div id="resourcesNeeded" style="display: none;">
+        <h2>Recursos Mínimos Necessários</h2>
+        <p>Água: <span id="waterNeeded"></span></p>
+        <p>Comida: <span id="foodNeeded"></span></p>
+        <p>Minerais: <span id="mineralsNeeded"></span></p>
+        <p>Energia: <span id="energyNeeded"></span></p>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
