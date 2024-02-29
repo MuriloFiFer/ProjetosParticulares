@@ -5,9 +5,10 @@ body{
     display: flex;
     justify-content: center;
     background-color: whitesmoke;
-    width: 100%;
+    width: 110%;
     margin-top: -08px;
     height: 120px;
+    margin-left: -5%;
    
   }
   
@@ -15,8 +16,7 @@ body{
     margin-top: 13px;
     display: flex;
     align-items: center;
-    height:100px;
-    
+    height:100px;   
   
   }
   
@@ -27,6 +27,7 @@ body{
     margin-top: 5px;
     height: 80px;
     width: 90px;
+    border-radius: 20%;
   
   }
   
@@ -44,7 +45,7 @@ body{
     height: 80px;
   }
   
-  #iconBuy {
+  #logo1 {
   
     height: 40px;
   }
@@ -57,3 +58,22 @@ body{
   }
   
 h1{margin-left: 5px;}
+
+#btn1{
+  display: flex;
+ justify-content: center; 
+  width: 100%;
+ margin-top: 2%;
+}
+
+#btnCont{
+  margin-left: 50%;
+}
+
+button{
+  border-radius: 15%;
+  background-color: whitesmoke;
+  height: 30px;
+  border: none;
+  font-family:'Times New Roman', Times, serif
+}
